@@ -79,10 +79,113 @@
 # 100 e pede ao usuário para adivinhar o número. O programa deve dar dicas se o 
 # número fornecido pelo usuário é maior ou menor que o número secreto.
 # Dica:
-n = 0
-from random import randint
-segredo = randint(1,100)
 
-while segredo != n:
-    n = int(input("Qual numero você chuta?"))
+# n = 0
+# from random import randint
+# segredo = randint(1,100)
 
+# while segredo != n:
+#     n = int(input("Qual numero você chuta?: "))
+#     if n > segredo :
+#         print("Menor que isso")
+#     elif n < segredo :
+#         print("Maior que isso")
+#     elif n == segredo:
+#         print("Você acertou o numero secreto é: ", n)
+#         break
+#     else:
+#         print("Formato incorreto")
+
+# 7. Conversor de temperatura:
+# Escreva um programa que converte temperaturas de Celsius para Fahrenheit 
+# ou Kelvin e vice-versa, dependendo da escolha do usuário.
+# Dica: crie um menu com opções para o usuário interagir.
+    
+# while True:
+#     print("Escolha umas das opções: ", "\n", "\n\tC - Celcius", "\n\tF - Farenheight" , "\n\tK - Kelvin", "\n\tE - Encerrar", "\n") 
+#     opcao = input("Deseja continuar?(s - sim, e - Encerrar): ").lower()
+#     if opcao == "e":
+#         break
+#     elif opcao == "s":
+#         escolha1 = input("Oque você deseja converter?: ").lower()
+#         escolha2 = input("Para o que você deseja converter?: ").lower()
+#         if escolha1 and escolha2 in "kfc":
+#           match escolha1:
+#               case "c":
+#                   n1 = float(input("Quantos Celcius?: "))
+#                   if escolha2 == "k":
+#                       n2 = n1 + 273,15
+#                       print(f"{n1}C são {n2}K")
+#                   elif escolha2 == "c":
+#                       print(f"{n1}C são {n1}C")
+#                   else:
+#                       n2 = (n1 * 9/5) + 32 
+#                       print(f"{n1}C são {n2}F")
+#               case "f":
+#                   n1 = float(input("Quantos Farenheights?: "))
+#                   if escolha2 == "k":
+#                       n2 = (n1 - 32) * 5/9 + 273,15
+#                       print(f"{n1}F são {n2}K")
+#                   elif escolha2 == "c":
+#                       n2 = (n1 - 32) * 5/9
+#                       print(f"{n1}F são {n1}C")
+#                   else:
+#                       print(f"{n1}F são {n1}F")
+#               case "k":
+#                   n1 = float(input("Quantos Kelvins?: "))
+#                   if escolha2 == "k":
+#                       print(f"{n1}K são {n1}K")
+#                   elif escolha2 == "c":
+#                       n2 = n1 - 273,15 
+#                       print(f"{n1}K são {n1}C")
+#                   else:
+#                       n2 = (n1 - 273,15) * 9/5 + 32
+#                       print(f"{n1}K são {n2}F")
+                
+#         else:
+#             print("Informe k ou c ou f")
+#     else:
+#         print("Informe s ou e")
+
+# 8. Calculadora básica:
+# Escreva um programa que realiza operações de adição, subtração, 
+# multiplicação e divisão, dependendo da escolha do usuário.
+# Dica: lembre-se de utilizar uma estrutura de menu para seleção das opções
+
+# print("a - adição")
+# print("b - subtração")
+# print("c - multiplição")
+# print("d - divisão")
+# operacao = input("Selecione a operação desejada: ").lower()
+# a = float(input("\tDigite o primeirto número: "))
+# b = float(input("\tDigite o primeirto número: "))
+
+# match operacao:
+#     case "a":
+#         print(a + b)
+#     case "b":
+#         print(a - b)
+#     case "c":
+#         print(a * b)
+#     case "d":
+#         print(a / b)
+#     case _:
+#         print("opção invalida")
+
+# 9. Validador de senha:
+# Escreva um programa que verifica se uma senha inserida pelo usuário é 
+# válida. Uma senha válida deve ter pelo menos 8 caracteres, conter pelo 
+# menos uma letra maiúscula, uma letra minúscula, um número e um caractere 
+# especial.
+
+senha = input("Senha: ")
+tamanho = len(senha) < 8
+minuscula = senha.islower()
+maiuscula = senha.isupper()
+soLetra = senha.isalpha()            
+soNumeroLetra = senha.isalnum()            
+ehValida = (tamanho or minuscula or maiuscula or soLetra or soNumeroLetra)            
+if ehValida:
+  print("Senha invalida")
+else:
+  print("Sinha valida")
