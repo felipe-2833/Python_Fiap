@@ -1,0 +1,5 @@
+solução exercicio proposto na aula do dia 29:
+
+perguntar valor com input de A e b 
+escrever cada variavel de formulas para realizar cada ação 
+printar cada solução
