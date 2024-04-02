@@ -1,7 +1,37 @@
 #Questão 1: Validação delogin e senha
 
-login = ("Digite seu login(e-mail, CPF ou RG):")
+login = input("Digite seu login(e-mail, CPF ou RG):")
+ehValido = False
+cpf = False
+rg = False
+email = False
+contadorArroba = 0 
+contadorPonto = 0
+for i in login:
+    if i.isalnum() or i == "@" or i == "_" or i == ".":
+        ehValido = True
+    if i == "@":
+        contadorArroba += 1
+        for tamanho in range(login, 0 , -1):
+            print("")
+        if contadorArroba > 1:
+            print("opção não valida")
+            break
+    if i == ".":
+        contadorPonto += 1
+    if contadorArroba == 1:
+            vfdb
+    else:
+        ehValido == False
+        print("Opçaõ invalida de login")
+        break
+        
+if ehValido == True and contadorArroba == 1 and contadorPonto >= 1:
+    email = True
+    for tamanho in range(login, 0 , -1):
+        print
 
+    
 
 # contadorNum = 0 
 # contadorM = 0 
