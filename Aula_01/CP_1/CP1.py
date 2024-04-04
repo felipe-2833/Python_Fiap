@@ -1,5 +1,6 @@
 #Questão 1: Validação de login e senha
 loginEfetuado = False
+alteraSenha = False
 
 while loginEfetuado == False:
     checkLogin = 0
@@ -15,7 +16,7 @@ while loginEfetuado == False:
     contadorUnder = 0
 
     print("-" * 50)
-    login = input("login(e-mail, CPF ou RG):")
+    login = input("login(e-mail, CPF, RG ou Username):")
     senha = input("Senha: ")
     
 
@@ -38,6 +39,7 @@ while loginEfetuado == False:
             contadorUnder += 1
         if i.isnumeric():
             contadorNum += 1
+            
     #valida se eh email:       
     if ehValido == True and contadorArroba == 1 and contadorPonto >= 1:
         partes = login.split('@')
@@ -73,6 +75,12 @@ while loginEfetuado == False:
         elif contadorIfen == 0 and contadorPonto == 0:
             confirmLogin = login
             checkLogin += 1
+    #valida se é username:
+    elif ehValido == True and contadorArroba == 0 and contadorPonto == 0 and contadorIfen == 0:
+        confirmLogin = login
+        checkLogin += 1
+
+
 
     # validação senha 
         
@@ -117,17 +125,25 @@ while loginEfetuado == True:
     print("\n")
     print("\t1 - Cadastrar novo usuário.")
     print("\t2 - Proteger Senha.")
+    print("\t3 - Sair.")
     print("\n")
-    opcao = int(input("Escolha uma das opções acima(1 ou 2): "))
+    opcao = int(input("Escolha uma das opções acima(1 ou 2 ou 3): "))
     
     match opcao:
         case 1:
             print("-" * 50)
             print("Informe seu login e senha já cadastrados:")
             novoLogin = False
-            login = input("login(e-mail, CPF ou RG):")
+            login = input("login(e-mail, CPF, RG ou UserName):")
             senha = input("Senha: ")
-
+            #Questão 5: Login com a senha protegida
+            if alteraSenha == True:
+                senha_ord = " "
+                for c in senha:
+                    senha_ord += str(ord(c))
+                hashVerifica = int(senha_ord)%nPrimo
+                senha = str(hashVerifica)
+                  
             if login != confirmLogin or senha != confirmSenha:
                print("Encerrando sessão")
                break
@@ -147,7 +163,7 @@ while loginEfetuado == True:
 
                     print("-" * 50)
                     print("Digite um novo login e senha:")
-                    login = input("login(e-mail, CPF ou RG):")
+                    login = input("login(e-mail, CPF, RG ou UserName):")
                     senha = input("Senha: ")
 
                     for i in login:
@@ -206,6 +222,11 @@ while loginEfetuado == True:
                             confirmLogin = login
                             checkLogin += 1
 
+                    #valida se é username:
+                    elif ehValido == True and contadorArroba == 0 and contadorPonto == 0 and contadorIfen == 0:
+                        confirmLogin = login
+                        checkLogin += 1
+
                     # validação senha 
                     contadorNum = 0 
                     contadorM = 0 
@@ -230,6 +251,7 @@ while loginEfetuado == True:
                         print("\n")
                         print("Novo login efetuado com sucesso!")
                         novoLogin = True
+                        alteraSenha = False
                     else:
                         if checkLogin == 0:
                             print("\n")
@@ -243,23 +265,53 @@ while loginEfetuado == True:
         case 2: 
             # Questão 3: Encontre um número primo
             print("-" * 50)
-            n = int(input("Digite um numero inteiro e maior ou igual a 2: "))
-            primo = True
-            nPrimo = 0
-            for i in range(2, n + 1):
-                ind = i
-                for a in range(2, ind // 2):
-                    if  i%a == 0:
-                        primo = False
-                        break
+            if alteraSenha == True:
+                print("\n")
+                print("Sua senha atual já foi protegida.")
+            else:
+                print("Informe seu login e senha:")
+                login = input("login(e-mail, CPF, RG ou UserName):")
+                senha = input("Senha: ")
+
+                if login != confirmLogin or senha != confirmSenha:
+                    print("\n")
+                    print("E-mail e/ou senha incorretos.")
+                else:
+                    print("-" * 50)
+                    n = int(input("Digite um numero inteiro e maior ou igual a 2: "))
+                    primo = True
+                    nPrimo = 0
+                    if n < 2:
+                        print("\n")
+                        print("Numero necessita ser maior ou igual a 2.")
                     else:
-                        primo = True
-                if primo == True:
-                    nPrimo = i
-            #Questão 4: Protegendo a senha
-            senha_ord = " "
-            for c in confirmSenha:
-                senha_ord += str(ord(c))
-            hash = int(senha_ord)%nPrimo
-            confirmSenha = str(hash)
-            print(hash)
+                        for i in range(2, n + 1):
+                            ind = i
+                            for a in range(2, ind // 2):
+                                if  i%a == 0:
+                                    primo = False
+                                    break
+                                else:
+                                    primo = True
+                            if primo == True:
+                                nPrimo = i
+                        #Questão 4: Protegendo a senha
+                        senha_ord = " "
+                        for c in confirmSenha:
+                            senha_ord += str(ord(c))
+                        hash = int(senha_ord)%nPrimo
+                        confirmSenha = str(hash)
+                        print("\n")
+                        print("Senha segura!")
+                        print(hash)
+                        alteraSenha = True
+
+        case 3:
+            print("Encerrando...")
+            break
+
+        case _:
+
+            print("\n")
+            print("Opção invalida!")
+            print("Escolha um das opções: 1 ou 2.")
