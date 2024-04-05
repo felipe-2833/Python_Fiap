@@ -177,13 +177,13 @@ while loginEfetuado == True:
                             if contadorArroba > 1:
                                 ehValido = False
                                 break
-                        if i == ".":
+                        elif i == ".":
                             contadorPonto += 1
-                        if i == "-":
+                        elif i == "-":
                             contadorIfen += 1
-                        if i == "_":
+                        elif i == "_":
                             contadorUnder += 1
-                        if i.isnumeric():
+                        elif i.isnumeric():
                             contadorNum += 1
                             
                     #valida se eh email:       
