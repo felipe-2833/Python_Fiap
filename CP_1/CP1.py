@@ -31,13 +31,13 @@ while loginEfetuado == False:
             if contadorArroba > 1:
                 ehValido = False
                 break
-        if i == ".":
+        elif i == ".":
             contadorPonto += 1
-        if i == "-":
+        elif i == "-":
             contadorIfen += 1
-        if i == "_":
+        elif i == "_":
             contadorUnder += 1
-        if i.isnumeric():
+        elif i.isnumeric():
             contadorNum += 1
             
     #valida se eh email:       
@@ -314,4 +314,4 @@ while loginEfetuado == True:
 
             print("\n")
             print("Opção invalida!")
-            print("Escolha um das opções: 1 ou 2.")
+            print("Escolha um das opções: 1 ou 2 ou 3.")
