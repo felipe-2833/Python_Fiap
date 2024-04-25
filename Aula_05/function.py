@@ -22,7 +22,7 @@ def media_arbitraria(*args):
         s += i
         n += 1
     if n == 0:
-        return 0 
+        return 0
     return s/n
 
 # print(media_arbitraria(1, 2, 3, 4, 5, 6, 7))
