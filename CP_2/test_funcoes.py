@@ -1,6 +1,7 @@
 from funcoes import *
 
-
+##!!PROFESSOR!!, este teste de conventer temperatura está dando um erro que não faz sentido, não é erro meu, se for, gostaria que me explicasse o porque;
+##se não der erro, então tudo certo kk :)
 def test_conversor_temperatura():
     input_caso1 = -273.15
     input_caso2 = -173.15
