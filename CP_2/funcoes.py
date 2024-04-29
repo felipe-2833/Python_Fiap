@@ -1,3 +1,7 @@
+#Nome: Felipe Levy Stephens Fidelix
+#RM: 556426
+
+
 ##!!PROFESSOR!!, o teste de conventer temperatura está dando um erro que não faz sentido, não é erro meu, se for, gostaria que me explicasse o porque;
 ##se não der erro, então tudo certo kk :)
 def conversor_temperatura(temperatura: float,de: str,para: str):
