@@ -34,4 +34,3 @@ lista[0]
 lista[:]
 lista[3:5]
 lista[::-1]
-
