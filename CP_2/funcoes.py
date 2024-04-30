@@ -135,3 +135,5 @@ def conta_palavras(texto: str) -> int:
         return conta_palavras + 1
     else:
         return 0
+
+# print(conversor_temperatura(, "C", "K"))

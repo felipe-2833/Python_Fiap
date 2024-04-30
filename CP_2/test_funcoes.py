@@ -1,4 +1,5 @@
 from funcoes import *
+import pytest
 
 ##!!PROFESSOR!!, este teste de conventer temperatura está dando um erro que não faz sentido, não é erro meu, se for, gostaria que me explicasse o porque;
 ##se não der erro, então tudo certo kk :)
@@ -12,8 +13,8 @@ def test_conversor_temperatura():
     result_1 = conversor_temperatura(input_caso1, "C", "K")
     result_2 = conversor_temperatura(input_caso2, "C", "K")
 
-    assert result_1 == expected_caso1
-    assert result_2 == expected_caso2
+    assert pytest.approx(result_1) == expected_caso1
+    assert pytest.approx(result_2)== expected_caso2
 
 
 def test_conversor_temperatura_fails():
