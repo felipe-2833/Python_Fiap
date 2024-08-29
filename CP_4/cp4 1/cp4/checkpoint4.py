@@ -66,8 +66,6 @@ def adicionar_novo_estudante(pessoas, nome, idade, estudante=True):
     else:
         if media_estudantes < 25:
             pessoas.append({"nome":nome, "idade":idade, "estudante":estudante})
-    return(pessoas, media_estudantes)
-    
     # Não retorna nada, pois apenas modifica a lista pessoas
 
 
@@ -87,15 +85,16 @@ def atualizar_estudantes(pessoas, novo_estudante):
             if pessoa["nome"] == novo_estudante["nome"]:
                 pessoa["idade"] = novo_estudante["idade"]
                 pessoa["estudante"] = novo_estudante["estudante"]
-            else:
-                # deverá chamar a função adicionar_novo_estudante,
-                # caso atenda aos critérios
-                adicionar_novo_estudante(
-                    pessoas,
-                    novo_estudante["nome"],
-                    novo_estudante["idade"],
-                    novo_estudante["estudante"],
-                )
+                break
+        else:
+            # deverá chamar a função adicionar_novo_estudante,
+            # caso atenda aos critérios
+            adicionar_novo_estudante(
+                pessoas,
+                novo_estudante["nome"],
+                novo_estudante["idade"],
+                novo_estudante["estudante"],
+            )
     except KeyError as e:
         print("Chave requerida não encontrada:\t", e)
     # Não retorna nada, pois apenas modifica a lista pessoas
