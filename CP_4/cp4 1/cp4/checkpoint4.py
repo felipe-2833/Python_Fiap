@@ -21,19 +21,6 @@ def filtrar_estudantes(pessoas, target=True):
             estudantes.append({"nome":pessoa.get("nome"), "idade":pessoa.get("idade")})
     return estudantes
 
-lista_estudantes = [
-                  {"nome": "Mark", "idade": 21, "estudante": True},
-                  {"nome": "Tom", "idade": 35, "estudante": False},
-                  {"nome": "Eva", "idade": 19, "estudante": True},
-                  {"nome": "Lucy", "idade": 32, "estudante": False},
-                  {"nome": "Alice", "idade": 25, "estudante": True},
-                  {"nome": "Carlos", "idade": 30, "estudante": False},
-                  {"nome": "Bianca", "idade": 22, "estudante": True},
-                  {"nome": "Daniel", "idade": 28, "estudante": False}
-                 ]
-
-print(filtrar_estudantes(lista_estudantes))
-
 
 # Questão 2: Calcular média de idade dos estudantes
 def calcular_media_idade(pessoas):
@@ -48,14 +35,15 @@ def calcular_media_idade(pessoas):
 
     # Comece a implementação aqui
     soma = 0
-    if estudantes == []:
+    media = 0
+    if estudantes:
+        for estudante in estudantes:
+            soma += estudante["idade"]
+        media = soma / len(estudantes)
+        return media
+    else:
         return None
-    for estudante in estudantes:
-        soma += estudante["idade"]
-    media = soma / len(estudantes)
-    return media
     
-print(calcular_media_idade(lista_estudantes))
 
 # Questão 3: Adicionar novo estudante se a média de idade for menor que 25
 def adicionar_novo_estudante(pessoas, nome, idade, estudante=True):
@@ -70,11 +58,15 @@ def adicionar_novo_estudante(pessoas, nome, idade, estudante=True):
     """
     # A função deverá obrigatoriamente chamar a função calcular_media_idade
     media_estudantes = calcular_media_idade(pessoas)
-
+        
     # Comece a implementação aqui
     ...
-    if media_estudantes < 25:
+    if media_estudantes == None:
         pessoas.append({"nome":nome, "idade":idade, "estudante":estudante})
+    else:
+        if media_estudantes < 25:
+            pessoas.append({"nome":nome, "idade":idade, "estudante":estudante})
+    return(pessoas, media_estudantes)
     
     # Não retorna nada, pois apenas modifica a lista pessoas
 
@@ -107,10 +99,8 @@ def atualizar_estudantes(pessoas, novo_estudante):
     except KeyError as e:
         print("Chave requerida não encontrada:\t", e)
     # Não retorna nada, pois apenas modifica a lista pessoas
-
-nA = {"nome":"Claubin","idade":0}
-atualizar_estudantes(lista_estudantes,nA)
-
+    
+    
 # Questão 5: Calcular média de idade por status de estudante
 def calcular_media_por_status(pessoas):
     """
@@ -123,23 +113,28 @@ def calcular_media_por_status(pessoas):
 
     # A função deverá obrigatoriamente chamar a função filtrar_estudantes,
     # atentando-se aos parâmetros
-    estudantes = filtrar_estudantes(pessoas)
-    nao_estudantes = filtrar_estudantes(pessoas, False)
+    estudantes = filtrar_estudantes(pessoas, target=True)
+    nao_estudantes = filtrar_estudantes(pessoas, target=False)
     soma1 = 0
     soma2 = 0 
-    if estudantes == [] or nao_estudantes == []:
+    media1 = 0
+    media2 = 0
+    if estudantes:
+        for pessoa in estudantes:
+            soma1 += pessoa["idade"]
+        media1 = soma1 / len(estudantes) 
+    else:
         media1 = None
+        
+    if nao_estudantes:
+        for pessoa in nao_estudantes:
+            soma2 += pessoa["idade"]
+        media2 = soma2 / len(nao_estudantes)
+    else:
         media2 = None
-    for pessoa in estudantes:
-        soma1 += pessoa["idade"]
-    media1 = soma1 / len(estudantes)
-    for pessoa in nao_estudantes:
-        soma2 += pessoa["idade"]
-    media2 = soma2 / len(nao_estudantes)
 
     return {
         "media_estudantes": media1,
         "media_nao_estudantes": media2,
     }
 
-print(calcular_media_por_status(lista_estudantes))
