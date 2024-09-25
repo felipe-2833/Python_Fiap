@@ -2,6 +2,15 @@ from datetime import datetime
 from pathlib import Path
 from fastapi import FastAPI
 import pandas as pd
+from pydantic import BaseModel
+
+class Car(BaseModel):
+    report_recived_date: str | None
+    manufactured: str | None
+    component: str | None
+    recall_type: str | None
+    potentially_affected: int | None
+
 
 app = FastAPI()
 
@@ -13,6 +22,9 @@ fake_items_db = [
     ]
 
 db = pd.read_csv(Path(__file__).parent / "bd.csv")
+
+car = {"abacate":"R$100,00",}
+
 
 @app.get("/cars")
 async def root():
@@ -44,6 +56,21 @@ async def read_cars_info_columns_value(column:str, value:str|float):
 @app.get("/cars/")
 async def head(start: int=0, stop:int=1):
     return db.iloc[start:stop].to_dict(orient="record")
+
+@app.post("/cars/")
+async def create_car(car: Car):
+    db.loc[db.shape[0]] = car.model_dump()
+    db.to_csv(Path(__file__).parent / "bd.csv", idex=False)
+    return{"Status" : "Sucess"}
+    
+@app.patch("/cars/{column}")
+async def update_car(column: str, value:str, car: Car):
+    idx = db[column] == value
+    if not idx.any():
+        return {"status" : "error", "message":"Nenhum registro encontrado"}
+    db[idx] = car.model_dump()
+    return db[idx].head().to_dict(orient="records")
+    
 
     
     
