@@ -19,7 +19,6 @@ class Endereco(TypedDict):
 class User(TypedDict):
     id: int
     username: str
-    password: str
     email: str
     nome: str
     rg: str

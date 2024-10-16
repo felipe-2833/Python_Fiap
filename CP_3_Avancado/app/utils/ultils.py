@@ -1,9 +1,9 @@
-//pydantic
+#pydantic
 from string import ascii_letters, digits
 
 characters = ascii_letters + digits + "_" + "-" + "."
 
-def is_alnum_or_underscore(c:str) -> bool:
+def is_in_chars(c:str) -> bool:
     return c in characters and len(c) == 1
 
 def validar_dominio(domain:str) -> bool:
@@ -18,4 +18,4 @@ def validar_dominio(domain:str) -> bool:
     return all(map(lambda x : map(lambda c : c in characters,x) or x in "", parts))  
 
 def count_chars(s:str, pattern: str) -> dict:
-    return len(c for c in s if c in pattern)
+    return len([c for c in s if c in pattern])
