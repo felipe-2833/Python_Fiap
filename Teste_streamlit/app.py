@@ -162,3 +162,51 @@ st.scatter_chart(st.session_state.df, x="x", y="y", color=color)
 # │   └── my_hosted-image.png
 # └── streamlit_app.py
 #st.image(<path-to-image>)
+
+
+#
+st.session_state.saas = False
+@st.dialog("Cast your vote")
+def vote(item):
+    st.write(f"Why is {item} your favorite?")
+    reason = st.text_input("Because...")
+    if st.button("Submit"):
+        st.session_state.vote = {"item": item, "reason": reason}
+        st.session_state.saas = True
+        st.rerun()
+        
+@st.dialog("Resposta")    
+def response():
+    f"You voted for {st.session_state.vote['item']} because {st.session_state.vote['reason']}"
+    
+st.sidebar.write("Vote for your favorite")
+if st.sidebar.button("A"):
+    vote("A") 
+if st.sidebar.button("B"):
+    vote("B")
+    
+if st.session_state.saas == True:
+    response()
+    st.session_state.saas = False
+    
+    
+#
+data_df = pd.DataFrame(
+    {
+        "widgets": ["st.selectbox", "st.number_input", "st.text_area", "st.button"],
+    }
+)
+
+st.data_editor(
+    data_df,
+    column_config={
+        "widgets": st.column_config.Column(
+            "Streamlit Widgets",
+            help="Streamlit **widget** commands 🎈",
+            width="medium",
+            required=True,
+        )
+    },
+    hide_index=True,
+    num_rows="dynamic",
+)
